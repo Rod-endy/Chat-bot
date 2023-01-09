@@ -1,54 +1,66 @@
 import random
 #---------------------------Story Information----------------------------
 name = input("What is your name? ")
-print("Hello, " + name  + ". I am your personal AI ") 
-botName = input("What would you like to name me: ")
-print("My name is " + botName + " thank you for my name")
+print("Hello, " + name  + ". I am your Zachary Bank Chatbot") 
 
-#------------------------Feeling/Emotion Questions ----------------------
+def display_menu():
+  print("\n ** Zachary Bank**")  
+  print("1. checking account balances ") 
+  print("2. transferring funds")  
+  print("3. providing information about products and services") 
 
-def myFeeling(feeling):
-  randresp1 = random.randint(1,2)
-  randresp2 = random.randint(1,2)
-  goodFeelings = ["happy","delighted" , "great" , "okay", "ok" ,"good" , "well" , "nice"]
-  badFeelings = ["sad","down","depressed", "unwell","unhappy" ,"bad","not good"]
-  
-  if feeling in goodFeelings:
-      if randresp1 == 1:
-          print("Good to hear!")
-      elif randresp1 == 2:
-          print("Great!")
-  elif  feeling in badFeelings:
-      if randresp2 == 1:
-          print("I'm sorry to hear that!")
-          print("Keep your head up, I'm sure things will smoothen out soon enough.")
-      elif randresp2 == 2:
-          print("I'm sorry for you!")
-          wrong = input("What's wrong? ")
-          if wrong == "nothing" or wrong == "don't want to share." or wrong == "It's okay":
-              print("Alright, no worries.")
-          else:
-              print("We don't have to talk about it if you don't want to. \n Let's move on.")
-  else:
-      print("Alright. Let's continue.")
 
-  
-feeling = input("\nHow are you feeling today? ").lower()
-myFeeling(feeling)
+#----------------------------Users choice bank options------------------------
+def user_selection():
+    global isUsed #global variable isUsed
+    user_choice = int(input("\nWhat would you like to do today?(Pick number 1-3) "))
+    if user_choice == 1:  #checking account balances
+        print("checking account balances..") 
+        check_balances()
+    elif user_choice == 2:  #transferring funds
+        fundTransfer()
+    elif user_choice == 3:  #providing information about products and services
+        information()
+         
+    else:
+        print("\nSorry, Not a Valid Choice. Please try again!")
 
-#------------------------Age Questions ----------------------  
+      
+
+
+
+#--------------------------1-3 Options for users to choose from----------------------
+balance = 5000
+def check_balances():
+   print(balance)
+
+def fundTransfer():
+  money_deposit = int(input("\nWhat would you like to do today? Pick an amount under you balances please: " ))
+  print("Remaning balance is:")
+  print(balance - money_deposit)
+  if balance - money_deposit < 0:
+    print("You have taken out a loan")
+
+def information():
+  info_choice = int(input("\nWhat would you like to know about, 1. for products and 2. for services " ))
+  if info_choice == 1:
+    print("\nOur products are limitless which you can find more about on our formal website")
+  if info_choice == 2:
+    print("\nWe currently are rebuilding this location so we will have an operator get back to you shortly")
+
+
+
+#------------------------Age Questions --------------------------------  
 
 
 def myAge(age):
   response3 = random.randint(1, 2)
   
-  if age <14:
+  if age <18:  
       if response3 == 1:
           print("You are young, child lock enabled")
       elif response3 == 2:
           print("That's great that you are still young but a child lock will be initated")        
-  elif age >= 14 and age < 18:
-      print("You are a teen, great.")
   elif age >= 18 and age < 100:
       print("An Adult, all controls unlocked")
   else:
@@ -63,3 +75,5 @@ except:
   age =5
 
 myAge(age)
+display_menu()
+user_selection()
